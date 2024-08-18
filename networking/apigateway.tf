@@ -1,21 +1,22 @@
 resource "aws_apigatewayv2_api" "moloko-blog-api-gateway" {
   name          = "${var.project_name}-http-api"
+  description   = "Loko Blok's API_gateway"
   protocol_type = "HTTP"
 }
 
 resource "aws_apigatewayv2_integration" "moloko-blog-apigateway-lambda-integration" {
   api_id           = aws_apigatewayv2_api.moloko-blog-api-gateway.id
-  integration_type = "AWS_PROXY"
+  integration_type = "HTTP"
 
-  connection_type           = "INTERNET"
-  description               = "Loko Blok's API_gateway-Lambda integration"
-  integration_uri           = var.lambda-function-arn
-  passthrough_behavior      = "WHEN_NO_MATCH"
+  connection_type      = "INTERNET"
+  description          = "Loko Blok's API_gateway-Lambda integration"
+  integration_uri      = var.lambda-function-arn
+  passthrough_behavior = "WHEN_NO_MATCH"
 }
 
 resource "aws_apigatewayv2_stage" "moloko-blog-api-gateway-production-stage" {
-  api_id = aws_apigatewayv2_api.moloko-blog-api-gateway.id
-  name   = "v1"
+  api_id        = aws_apigatewayv2_api.moloko-blog-api-gateway.id
+  name          = "v1"
   deployment_id = aws_apigatewayv2_deployment.moloko-blog-apigateway-prd-deployment.id
 }
 
