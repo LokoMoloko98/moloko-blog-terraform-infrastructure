@@ -2,7 +2,7 @@
 terraform {
   backend "s3" {
     bucket         = "mol-remote-states-store"
-    key            = "modular-terraform-template/state.tfstate"
+    key            = "moloko-blog-terraform-infrastructure/state.tfstate"
     region         = "us-east-1"
     profile        = "default"
     dynamodb_table = "terraform-state-lock"

@@ -11,6 +11,7 @@ provider "aws" {
     tags = {
       "Automation" = "terraform"
       "Project"    = var.project_name
+      "Costs"      = var.project_name
     }
   }
 }
