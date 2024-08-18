@@ -12,3 +12,7 @@ variable "project_name" {
 variable "lambda-role-arn" {
   type = string
 }
+
+variable "apigateway_arn" {
+  type = string
+}
