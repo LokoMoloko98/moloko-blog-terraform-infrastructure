@@ -12,9 +12,9 @@ module "iam" {
 }
 
 module "networking" {
-  source = "./networking"
-  project_name = var.project_name
-  region       = var.region
+  source              = "./networking"
+  project_name        = var.project_name
+  region              = var.region
   lambda-function-arn = module.compute.lambda-function-arn
 }
 
