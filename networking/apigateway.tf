@@ -2,6 +2,7 @@ resource "aws_apigatewayv2_api" "moloko-blog-api-gateway" {
   name          = "${var.project_name}-http-api"
   description   = "Loko Blok's API_gateway"
   protocol_type = "HTTP"
+
 }
 
 resource "aws_apigatewayv2_integration" "moloko-blog-apigateway-lambda-integration" {
