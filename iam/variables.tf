@@ -9,3 +9,6 @@ variable "project_name" {
   type        = string
 }
 
+variable "dynamodb-arn" {
+  type = string  
+}
