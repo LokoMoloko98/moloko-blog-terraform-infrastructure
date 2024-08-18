@@ -15,3 +15,14 @@ resource "aws_lambda_function" "Lokos-blok-crud-function" {
     }
   }
 }
+
+resource "aws_lambda_permission" "lambda_apigateway_permission" {
+  statement_id  = "AllowAPIInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.Lokos-blok-crud-function.function_name
+  principal     = "apigateway.amazonaws.com"
+
+  # The /* part allows invocation from any stage, method and resource path
+  # within API Gateway.
+  source_arn = "${var.apigateway_arn}/*"
+}

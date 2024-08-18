@@ -38,8 +38,3 @@ resource "aws_iam_role_policy_attachment" "route53-role-attachment" {
   role       = aws_iam_role.moloko-blog-lambda-role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonRoute53FullAccess"
 }
-
-resource "aws_iam_role_policy_attachment" "lambda_logs" {
-  role       = aws_iam_role.moloko-blog-lambda-role.name
-  policy_arn = aws_iam_policy.lambda_logging.arn
-}
