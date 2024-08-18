@@ -10,5 +10,5 @@ variable "project_name" {
 }
 
 variable "dynamodb-arn" {
-  type = string  
+  type = string
 }
