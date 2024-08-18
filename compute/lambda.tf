@@ -17,7 +17,7 @@ resource "aws_lambda_function" "Lokos-blok-crud-function" {
 }
 
 resource "aws_lambda_permission" "lambda_apigateway_permission" {
-  statement_id  = "AllowAPIInvoke"
+  statement_id  = "apigateway-invoke-permissions"
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.Lokos-blok-crud-function.function_name
   principal     = "apigateway.amazonaws.com"
