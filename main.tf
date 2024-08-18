@@ -24,3 +24,10 @@ module "compute" {
   project_name    = var.project_name
   lambda-role-arn = module.iam.lambda-dynamodb-role-arn
 }
+
+module "observability" {
+  source = "./observability"
+  region          = var.region
+  project_name    = var.project_name
+  lambda_function_name = module.compute.lambda-function-name
+}
