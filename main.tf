@@ -1,13 +1,5 @@
-# module "networking" {
-#   source                 = "./networking"
-#   region                 = var.region
-#   public_subnet_az1_cidr = var.public_subnet_az1_cidr
-#   vpc_cidr               = var.vpc_cidr
-#   project_name           = var.project_name
-# }
-
 module "database" {
-  source = "./database"
+  source       = "./database"
   project_name = var.project_name
   region       = var.region
 }
@@ -20,10 +12,9 @@ module "iam" {
 }
 
 module "compute" {
-  source            = "./compute"
-  # security_group_id = module.networking.security_group_id
-  # subnet_id         = module.networking.subnet_id
-  region            = var.region
-  project_name      = var.project_name
+  source          = "./compute"
+  region          = var.region
+  project_name    = var.project_name
+  lambda-role-arn = module.iam.lambda-dynamodb-role-arn
 
 }

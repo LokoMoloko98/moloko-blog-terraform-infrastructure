@@ -7,7 +7,7 @@ Terraform Template to quickly provision AWS virtual infrastructure in a modular 
 
 2. **IAM Roles Creation**: Defines an instance role with permissions tailored for development tasks, including the ability to change instance names, make Route53 changes, and manage EC2 instances through Systems Manager (SSM).
 
-3. ** AWS Serverless Components**: 
+3. **AWS Serverless Components**: 
  * DynamoDB Database
  * Lambda Function
  * API Gateway 
