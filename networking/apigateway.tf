@@ -2,7 +2,6 @@ resource "aws_apigatewayv2_api" "moloko-blog-api-gateway" {
   name          = "${var.project_name}-http-api"
   description   = "Loko Blok's API_gateway"
   protocol_type = "HTTP"
-
 }
 
 resource "aws_apigatewayv2_integration" "moloko-blog-apigateway-lambda-integration" {
@@ -19,6 +18,24 @@ resource "aws_apigatewayv2_stage" "moloko-blog-api-gateway-production-stage" {
   api_id        = aws_apigatewayv2_api.moloko-blog-api-gateway.id
   name          = "v1"
   deployment_id = aws_apigatewayv2_deployment.moloko-blog-apigateway-prd-deployment.id
+
+  access_log_settings {
+    destination_arn = aws_cloudwatch_log_group.main_api_gw.arn
+
+    format = jsonencode({
+      requestId               = "$context.requestId"
+      sourceIp                = "$context.identity.sourceIp"
+      requestTime             = "$context.requestTime"
+      protocol                = "$context.protocol"
+      httpMethod              = "$context.httpMethod"
+      resourcePath            = "$context.resourcePath"
+      routeKey                = "$context.routeKey"
+      status                  = "$context.status"
+      responseLength          = "$context.responseLength"
+      integrationErrorMessage = "$context.integrationErrorMessage"
+      }
+    )
+  }
 }
 
 
@@ -39,6 +56,12 @@ resource "aws_apigatewayv2_deployment" "moloko-blog-apigateway-prd-deployment" {
   lifecycle {
     create_before_destroy = true
   }
+}
+
+resource "aws_cloudwatch_log_group" "main_api_gw" {
+  name = "/aws/api-gw/${aws_apigatewayv2_api.moloko-blog-api-gateway.name}"
+
+  retention_in_days = 30
 }
 
 data "aws_ssm_parameter" "route_53_hostzone_id" {
