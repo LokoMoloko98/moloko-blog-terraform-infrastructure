@@ -15,7 +15,7 @@ resource "aws_apigatewayv2_integration" "moloko-blog-apigateway-lambda-integrati
 
 resource "aws_apigatewayv2_stage" "moloko-blog-api-gateway-production-stage" {
   api_id = aws_apigatewayv2_api.moloko-blog-api-gateway.id
-  name   = "prd-stage"
+  name   = "v1"
   deployment_id = aws_apigatewayv2_deployment.moloko-blog-apigateway-prd-deployment.id
 }
 
