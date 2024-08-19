@@ -11,9 +11,6 @@ resource "aws_apigatewayv2_integration" "moloko-blog-apigateway-lambda-integrati
   description          = "Loko's Blok API_gateway-Lambda integration"
   integration_uri      = var.lambda-function-arn
   passthrough_behavior = "WHEN_NO_MATCH"
-   lifecycle {
-    ignore_changes = [passthrough_behavior]
-  }
 }
 
 resource "aws_apigatewayv2_stage" "moloko-blog-api-gateway-production-stage" {
