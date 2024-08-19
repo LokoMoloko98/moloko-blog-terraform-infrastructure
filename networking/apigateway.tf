@@ -8,7 +8,7 @@ resource "aws_apigatewayv2_integration" "moloko-blog-apigateway-lambda-integrati
   api_id           = aws_apigatewayv2_api.moloko-blog-api-gateway.id
   integration_type = "AWS_PROXY"
   connection_type      = "INTERNET"
-  description          = "Loko Blok's API_gateway-Lambda integration"
+  description          = "Loko's Blok API_gateway-Lambda integration"
   integration_uri      = var.lambda-function-arn
   passthrough_behavior = "WHEN_NO_MATCH"
 }
