@@ -35,10 +35,6 @@ resource "aws_apigatewayv2_stage" "moloko-blog-api-gateway-production-stage" {
       }
     )
   }
-
-   lifecycle {
-    ignore_changes = [passthrough_behavior]
-  }
 }
 
 
