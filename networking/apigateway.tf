@@ -5,12 +5,15 @@ resource "aws_apigatewayv2_api" "moloko-blog-api-gateway" {
 }
 
 resource "aws_apigatewayv2_integration" "moloko-blog-apigateway-lambda-integration" {
-  api_id           = aws_apigatewayv2_api.moloko-blog-api-gateway.id
-  integration_type = "AWS_PROXY"
+  api_id               = aws_apigatewayv2_api.moloko-blog-api-gateway.id
+  integration_type     = "AWS_PROXY"
   connection_type      = "INTERNET"
   description          = "Loko's Blok API_gateway-Lambda integration"
   integration_uri      = var.lambda-function-arn
   passthrough_behavior = "WHEN_NO_MATCH"
+   lifecycle {
+    ignore_changes = [passthrough_behavior]
+  }
 }
 
 resource "aws_apigatewayv2_stage" "moloko-blog-api-gateway-production-stage" {
@@ -34,6 +37,10 @@ resource "aws_apigatewayv2_stage" "moloko-blog-api-gateway-production-stage" {
       integrationErrorMessage = "$context.integrationErrorMessage"
       }
     )
+  }
+
+   lifecycle {
+    ignore_changes = [passthrough_behavior]
   }
 }
 

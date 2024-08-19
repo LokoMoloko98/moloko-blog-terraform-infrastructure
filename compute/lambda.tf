@@ -21,7 +21,5 @@ resource "aws_lambda_permission" "lambda_apigateway_permission" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.Lokos-blok-crud-function.function_name
   principal     = "apigateway.amazonaws.com"
-  source_arn = "${var.apigateway_arn}/*/*/${aws_lambda_function.Lokos-blok-crud-function.function_name}"
-                # arn:aws:execute-api:us-east-1:004259644140:t408kfz6a6/*/*/Lokos-blok-crud-function
-                # arn:aws:apigateway:us-east-1::/apis/t408kfz6a6
+  source_arn = "${var.apigateway_arn}/*/*/*"
 }
