@@ -12,3 +12,7 @@ variable "project_name" {
 variable "dynamodb-arn" {
   type = string
 }
+
+variable "lambda_bucket" {
+  type = string
+}

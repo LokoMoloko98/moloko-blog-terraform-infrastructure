@@ -9,6 +9,10 @@ variable "project_name" {
   type        = string
 }
 
-variable "lambda_bucket" {
+variable "lambda-role-arn" {
+  type = string
+}
+
+variable "apigateway_arn" {
   type = string
 }

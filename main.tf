@@ -5,14 +5,15 @@ module "database" {
 }
 
 module "iam" {
-  source       = "./iam"
-  project_name = var.project_name
-  region       = var.region
-  dynamodb-arn = module.database.moloko-blog-dynamodb-table-arn
+  source        = "./iam"
+  project_name  = var.project_name
+  region        = var.region
+  dynamodb-arn  = module.database.moloko-blog-dynamodb-table-arn
+  lambda_bucket = var.lambda_bucket
 }
 
 module "networking" {
-  source              = "./networking"
+  source              = "./apigateway"
   project_name        = var.project_name
   region              = var.region
   lambda-function-arn = module.compute.lambda-function-arn
