@@ -16,25 +16,11 @@ resource "aws_dynamodb_table" "blog-dynamodb-table" {
     type = "S"
   }
 
-  attribute {
-    name = "PublishedDate"
-    type = "S"
-  }
 
   ttl {
     attribute_name = "TimeToExist"
     enabled        = true
   }
-
-  # global_secondary_index {
-  #   name               = "BlogTitleIndex"
-  #   hash_key           = "BlogTitle"
-  #   range_key          = "PublishedDate"
-  #   write_capacity     = 20
-  #   read_capacity      = 20
-  #   projection_type    = "INCLUDE"
-  #   non_key_attributes = ["BlogId"]
-  # }
 
   point_in_time_recovery {
     enabled = true
